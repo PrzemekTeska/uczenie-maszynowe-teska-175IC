@@ -7,7 +7,7 @@ from sklearn.preprocessing import Normalizer
 from sklearn.preprocessing import PolynomialFeatures
 import matplotlib.pyplot as plt
 import seaborn as sns
-from bokeh.plotting import figure
+from bokeh.plotting import figure, show
 from bokeh.layouts import gridplot
 from bokeh.io import export_png
 
@@ -170,6 +170,8 @@ sns.barplot(x="sex",
             hue="class",
             data=titanic)
 
+plt.show()
+
 # Tytuł wykresu
 plt.title("A Title")
 
@@ -179,30 +181,40 @@ plt.ylim(0, 100)
 # Ustawienie limitu osi x
 plt.xlim(0, 10)
 
+plt.show()
+
 #################################################
 
 # Ósmy cheat sheet
 p = figure(tools='box_select')
-p1 = figure(plot_width=300, tools='pan,box_zoom')
-p2 = figure(plot_width=300, plot_height=300,
-            x_range=(0, 8), y_range=(0, 8))
-p3 = figure()
+x = np.linspace(0, 4 * np.pi, 100)
+y = np.sin(x)
+p.circle(x, y, legend_label="sin(x)")
+p.circle(x, 2 * y, legend_label="2*sin(x)", color="orange")
+p.circle(x, 3 * y, legend_label="3*sin(x)", color="green")
+p.legend.title = "Przykładowy tytuł"
 
 # Lokalizacja legendy wewnątrz wykresu
 p.legend.location = 'bottom_left'
 
 # Orientacja legendy wykresu
-p.legend.orientation = "horizontal"
+# p.legend.orientation = "horizontal"
 p.legend.orientation = "vertical"
 
 # Obramówka i tło legendy wykresu
 p.legend.border_line_color = "navy"
 p.legend.background_fill_color = "white"
 
+show(p)
 # Układ typu grid
+p1 = figure(plot_width=300, tools='pan,box_zoom')
+p2 = figure(plot_width=300, plot_height=300,
+            x_range=(0, 8), y_range=(0, 8))
+p3 = figure()
+
 row1 = [p1, p2]
 row2 = [p3]
 layout = gridplot([[p1, p2], [p3]])
 
 # Export do pliku .png
-export_png(p, filename="plot.png")
+# export_png(p, filename="plot.png")
