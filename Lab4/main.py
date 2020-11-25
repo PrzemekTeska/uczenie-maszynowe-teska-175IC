@@ -78,10 +78,6 @@ b1.value = "Kurs"
 c1.value = "Zmiana w %"
 d1.value = "Transakcje"
 
-a2.value = firma[1]
-b2.value = kurs[1]
-c2.value = zmiana[1]
-
 i = 2
 j = 0
 while i < 7:
@@ -110,11 +106,40 @@ while i < 7:
 #     j += 1
 #     i += 1
 
-# d2.value = transakcje[0]
+page = requests.get("https://www.gry-online.pl/gry/")
+soup = BeautifulSoup(page.content, 'html.parser')
 
-# for row in ws1.iter_rows(min_row=3, max_col=4, max_row=7):
-#     for cell in row:
-#         print(cell)
+i = 1
+for a in soup.find_all('a', href=True):
+    ws2.cell(row=i, column=1).value = a['href']
+    i += 1
 
-wb.save('lab4.xlsx')
-# print(soup.find(id="aq_" + random_char(3) + "_c1").get_text())
+
+page = requests.get("https://www.filmweb.pl/film/Incepcja-2010-500891")
+soup = BeautifulSoup(page.content, 'html.parser')
+director = soup.find(text="reżyseria").next_element.find("a").text.strip()
+date = soup.find(text="premiera").next_element.find("a").text.strip()
+boxOffice = soup.find(text="boxoffice").next_element.text
+rating = soup.find("span", itemprop="ratingValue").text.strip()
+
+a1 = ws3['A1']
+b1 = ws3['B1']
+c1 = ws3['C1']
+d1 = ws3['D1']
+
+a2 = ws3['A2']
+b2 = ws3['B2']
+c2 = ws3['C2']
+d2 = ws3['D2']
+
+a1.value = "Reżyser"
+b1.value = "Data premiery"
+c1.value = "Box Office"
+d1.value = "Ocena"
+
+a2.value = director
+b2.value = date
+c2.value = boxOffice
+d2.value = rating
+
+wb.save('Teska-175IC.xlsx')
