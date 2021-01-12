@@ -8,7 +8,7 @@
 - [x] Enkodowanie i dekodowanie JSONa
 - [x] Deserializacja stringa
 - [x] JSON request z API
-- [x] Wypisanie użytkownik najniżej od równika Ziemii
+- [x] Wypisanie użytkownika najniżej od równika Ziemii
 - [x] Enkodowanie złożonych obiektów przy pomocy niestandardowej funkcji
 - [x] Enkodowanie złożonych obiektów przez nadpisanie domyślnej (default()) metody JSONEncodera
 - [x] Dekodowanie obiektów
