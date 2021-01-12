@@ -2,7 +2,6 @@ import spacy
 import re
 from spacy.tokenizer import Tokenizer
 from collections import Counter
-from spacy import displacy
 from spacy.matcher import Matcher
 
 nlp = spacy.load("pl_core_news_sm")

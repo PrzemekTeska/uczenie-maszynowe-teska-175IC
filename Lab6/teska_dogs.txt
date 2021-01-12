@@ -10,3 +10,5 @@ Boxer
 Border Terrier
 Beagle
 Beagle
+Beagle
+Beagle
